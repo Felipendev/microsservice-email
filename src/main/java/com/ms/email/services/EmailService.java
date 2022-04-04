@@ -4,6 +4,7 @@ import com.ms.email.enums.StatusEmail;
 import com.ms.email.models.EmailModel;
 import com.ms.email.repositories.EmailRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
+@Log4j2
 public class EmailService {
 
     private EmailRepository emailRepository;
@@ -20,6 +22,7 @@ public class EmailService {
     private JavaMailSender emailSender;
 
     public EmailModel sendEmail(EmailModel emailModel) {
+        log.info("[start] EmailService - sendEmail");
         emailModel.setSendDateEmail(LocalDateTime.now());
         try {
             SimpleMailMessage message = new SimpleMailMessage();
@@ -33,7 +36,9 @@ public class EmailService {
         } catch (MailException e) {
             emailModel.setStatusEmail(StatusEmail.ERROR);
         } finally {
-            return emailRepository.save(emailModel);
+            EmailModel emailSaved = emailRepository.save(emailModel);
+            log.info("[finish] EmailService - sendEmail");
+            return emailSaved;
         }
     }
 }
