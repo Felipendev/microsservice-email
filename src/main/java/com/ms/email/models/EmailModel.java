@@ -16,7 +16,7 @@ public class EmailModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID emailId;
     private String ownerRef;
-    private String emailForm;
+    private String emailFrom;
     private String emailTo;
     private String subject;
     @Column(columnDefinition = "TEXT")

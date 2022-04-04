@@ -9,10 +9,10 @@ import javax.validation.constraints.NotBlank;
 public class EmailDto {
 
     @NotBlank
-    private String ownerRef;@NotBlank
+    private String ownerRef;
     @NotBlank
     @Email
-    private String emailForm;
+    private String emailFrom;
     @NotBlank
     @Email
     private String emailTo;
