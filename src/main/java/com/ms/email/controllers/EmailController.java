@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,7 @@ public class EmailController {
 
     private EmailService emailService;
 
+    @CrossOrigin
     @PostMapping("/sending-email")
     public ResponseEntity<EmailModel> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
         log.info("[start] EmailController - sendingEmail");
